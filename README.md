@@ -2,6 +2,8 @@
 
 An implementation of a multitape Turing Machine. It uses three tapes over one so it calculates faster (less state transition needed). The application is written with [Processing](http://processing.org/).
 
+![alt tag](https://raw.githubusercontent.com/leozulfiu/multitape-turing-machine/master/screenshots/demo.gif)
+
 ## Installation
 
 You need [gradle](http://gradle.org/) to run the application.
