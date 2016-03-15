@@ -13,8 +13,8 @@ public class Main extends PApplet {
     ControlP5 cp5;
     Textfield firstNumber;
     Textfield secondNumber;
-    Button eingabeSetzen;
-    Button berechnenButton;
+    Button setInputButton;
+    Button calculateButton;
     boolean stepMode;
     boolean initialized;
 
@@ -25,35 +25,34 @@ public class Main extends PApplet {
     public void setup() {
         size(885, 300);
         frame.setTitle("Multitape Turing Machine");
-        //frameRate(1000000);
         cp5 = new ControlP5(this);
         PFont font = createFont("arial", 14);
-        firstNumber = cp5.addTextfield("Erste Zahl")
+        firstNumber = cp5.addTextfield("First Number")
                 .setPosition(560, 180)
                 .setSize(70, 30)
                 .setFont(font)
                 .setFocus(true)
                 .setAutoClear(false)
                 .setInputFilter(ControlP5.INTEGER);
-        secondNumber = cp5.addTextfield("Zweite Zahl")
+        secondNumber = cp5.addTextfield("Second Number")
                 .setPosition(660, 180)
                 .setSize(70, 30)
                 .setFont(font)
                 .setAutoClear(false)
                 .setInputFilter(ControlP5.INTEGER);
-        eingabeSetzen = cp5.addButton("Eingabe setzen")
+        setInputButton = cp5.addButton("Set Input")
                 .setPosition(560, 235)
                 .setSize(80, 50);
-        berechnenButton = cp5.addButton("Berechnen")
+        calculateButton = cp5.addButton("Calculate")
                 .setPosition(670, 250)
                 .setSize(60, 30);
-        berechnenButton.addListener(new ControlListener() {
+        calculateButton.addListener(new ControlListener() {
             @Override
             public void controlEvent(ControlEvent controlEvent) {
                 turingMachine.isRunning = true;
             }
         });
-        eingabeSetzen.addListener(new ControlListener() {
+        setInputButton.addListener(new ControlListener() {
             @Override
             public void controlEvent(ControlEvent controlEvent) {
                 turingMachine.reset();
@@ -78,7 +77,7 @@ public class Main extends PApplet {
         } else if (!turingMachine.isRunning && turingMachine.isFinished) {
             fill(255);
             textSize(18);
-            text("Resultat: " + turingMachine.getCalculatedNumber(), 20, 250);
+            text("Result: " + turingMachine.getCalculatedNumber(), 20, 250);
             drawTapeContent();
         } else if (!turingMachine.isFinished && turingMachine.isRunning && initialized) {
             drawTapeContent();
@@ -88,8 +87,8 @@ public class Main extends PApplet {
         }
         textSize(18);
         fill(255);
-        text("Aktueller Zustand: " + turingMachine.getCurrentStateAsText(), 20, 190);
-        text("Anzahl Rechenschritte: " + turingMachine.countOfCalculatingSteps, 20, 220);
+        text("Current State: " + turingMachine.getCurrentStateAsText(), 20, 190);
+        text("Calculation Steps: " + turingMachine.countOfCalculatingSteps, 20, 220);
     }
 
     private void drawTapeContent() {

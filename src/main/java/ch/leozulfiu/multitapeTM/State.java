@@ -14,20 +14,20 @@ public class State {
         this.description = description;
     }
 
-    public void setzeUebergange(Set<Transition> transitions) {
+    public void setTransitions(Set<Transition> transitions) {
         this.transitions = transitions;
     }
 
-    public boolean isProcessible(String eingabe) {
+    public boolean isProcessible(String input) {
         for (Transition transition : transitions) {
-            if (transition.getToRead().equals(eingabe)) {
+            if (transition.getToRead().equals(input)) {
                 return true;
             }
         }
         return false;
     }
 
-    public Set<Transition> gibUebergaenge() {
+    public Set<Transition> getTransitions() {
         return transitions;
     }
 }

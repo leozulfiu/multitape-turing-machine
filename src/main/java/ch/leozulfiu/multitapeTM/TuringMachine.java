@@ -16,12 +16,12 @@ public class TuringMachine {
         tape1 = new Tape();
         tape2 = new Tape();
         tape3 = new Tape();
-        currentState = EndlicherAutomat.gibStartZustand();
+        currentState = FiniteStateMachine.getStartState();
     }
 
     public void calculateStep() {
         String input = tape1.readSymbol() + tape2.readSymbol() + tape3.readSymbol();
-        Set<Transition> allTransitions = currentState.gibUebergaenge();
+        Set<Transition> allTransitions = currentState.getTransitions();
         boolean isProcessible = currentState.isProcessible(input);
         if (isProcessible) {
             for (Transition tempTransition : allTransitions) {
@@ -40,7 +40,7 @@ public class TuringMachine {
                 }
             }
         } else {
-            if (currentState.equals(EndlicherAutomat.gibEndZustand())) {
+            if (currentState.equals(FiniteStateMachine.getEndState())) {
                 getCalculatedNumber();
             }
             isFinished = true;
@@ -49,7 +49,7 @@ public class TuringMachine {
     }
 
     public String getCalculatedNumber() {
-        String content = tape3.gibGanzenInhalt();
+        String content = tape3.getFullContent();
         int number = 0;
         for (int i = 0; i < content.length(); i++) {
             char c = content.charAt(i);
@@ -61,22 +61,22 @@ public class TuringMachine {
     }
 
     public String getTape1Content() {
-        return tape1.gibInhaltAlsText();
+        return tape1.getContentAsString();
     }
 
     public String getTape2Content() {
-        return tape2.gibInhaltAlsText();
+        return tape2.getContentAsString();
     }
 
     public String getTape3Content() {
-        return tape3.gibInhaltAlsText();
+        return tape3.getContentAsString();
     }
 
     public void reset() {
         tape1.dump();
         tape2.dump();
         tape3.dump();
-        currentState = EndlicherAutomat.gibStartZustand();
+        currentState = FiniteStateMachine.getStartState();
         countOfCalculatingSteps = 0;
         isFinished = false;
         isRunning = false;

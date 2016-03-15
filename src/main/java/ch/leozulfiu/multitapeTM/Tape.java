@@ -11,12 +11,12 @@ public class Tape {
         right = new ArrayList<String>();
     }
 
-    public void initializeTape(int zahl1, int zahl2) {
-        for (int i = 0; i < zahl1; i++) {
+    public void initializeTape(int number1, int number2) {
+        for (int i = 0; i < number1; i++) {
             right.add("0");
         }
         right.add("1");
-        for (int i = 0; i < zahl2; i++) {
+        for (int i = 0; i < number2; i++) {
             right.add("0");
         }
         for (int i = 0; i < 15; i++) {
@@ -40,39 +40,39 @@ public class Tape {
         return right.get(0);
     }
 
-    public void writeSymbol(String zeichen) {
-        right.set(0, zeichen);
+    public void writeSymbol(String symbol) {
+        right.set(0, symbol);
     }
 
-    public String gibInhaltAlsText() {
-        String linksText = "";
-        String rechtsText = "";
+    public String getContentAsString() {
+        String leftContent = "";
+        String rightContent = "";
         for (int i = 0; i < 15; i++) {
-            linksText += left.get(i);
-            rechtsText += right.get(i);
+            leftContent += left.get(i);
+            rightContent += right.get(i);
         }
-        StringBuffer buffer = new StringBuffer(linksText).reverse();
-        return buffer + rechtsText;
+        StringBuffer buffer = new StringBuffer(leftContent).reverse();
+        return buffer + rightContent;
     }
 
-    public String gibGanzenInhalt() {
-        String resultat = "";
+    public String getFullContent() {
+        String result = "";
         for (String s : left) {
-            resultat += s;
+            result += s;
         }
         for (String s : right) {
-            resultat += s;
+            result += s;
         }
-        return resultat;
+        return result;
     }
 
-    public void step(String zeichen) {
-        if (zeichen.equals("L")) {
-            String zwischenspeicher = left.get(0);
-            right.add(0, zwischenspeicher);
+    public void step(String symbol) {
+        if (symbol.equals("L")) {
+            String temp = left.get(0);
+            right.add(0, temp);
             left.remove(0);
             left.add(TuringMachine.BLANK);
-        } else if (zeichen.equals("R")) {
+        } else if (symbol.equals("R")) {
             String zwischenspeicher = right.get(0);
             left.add(0, zwischenspeicher);
             right.remove(0);
