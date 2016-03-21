@@ -2,7 +2,7 @@
 
 An implementation of a multitape Turing Machine. It uses three tapes over one so it calculates faster (less state transitions needed). The application is written with [Processing](http://processing.org/).
 
-![alt tag](https://raw.githubusercontent.com/leozulfiu/multitape-turing-machine/master/screenshots/demo.gif)
+![GIF](https://raw.githubusercontent.com/leozulfiu/multitape-turing-machine/master/screenshots/demo.gif)
 
 ## Installation
 
